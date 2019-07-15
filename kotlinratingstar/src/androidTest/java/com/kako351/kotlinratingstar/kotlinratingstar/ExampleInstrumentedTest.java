@@ -1,4 +1,4 @@
-package com.kako351.kotlinratingstar2;
+package com.kako351.kotlinratingstar.kotlinratingstar;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.kako351.kotlinratingstar2.test", appContext.getPackageName());
+        assertEquals("com.kako351.kotlinratingstar.kotlinratingstar.test", appContext.getPackageName());
     }
 }

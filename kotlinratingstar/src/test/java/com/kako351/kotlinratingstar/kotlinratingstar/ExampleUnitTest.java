@@ -1,4 +1,4 @@
-package com.kako351.kotlinratingstar2;
+package com.kako351.kotlinratingstar.kotlinratingstar;
 
 import org.junit.Test;
 
