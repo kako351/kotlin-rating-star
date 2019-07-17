@@ -1,1 +1,1 @@
-include ':kotlinratingstar'
+include ':kotlinratingstar', ':sample'

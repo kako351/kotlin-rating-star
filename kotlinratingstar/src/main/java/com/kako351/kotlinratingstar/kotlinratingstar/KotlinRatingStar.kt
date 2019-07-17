@@ -2,10 +2,16 @@ package com.kako351.kotlinratingstar.kotlinratingstar
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.view.LayoutInflater
+import android.widget.LinearLayout
 
-class KotlinRatingStar: ConstraintLayout {
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
+class KotlinRatingStar @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr) {
+
+    init {
+        LayoutInflater.from(context).inflate(R.layout.kotlint_rating_star, this)
+    }
 }
