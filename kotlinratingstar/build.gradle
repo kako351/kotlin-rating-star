@@ -36,3 +36,18 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+def repo = new File(rootDir, "repository")
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = '1.0.0'
+            pom.groupId = 'com.kako351.kotlinratingstar'
+            pom.artifactId = 'kotlinratingstar'
+        }
+    }
+}
