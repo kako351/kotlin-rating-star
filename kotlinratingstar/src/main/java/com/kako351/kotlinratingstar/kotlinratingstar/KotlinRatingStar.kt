@@ -2,11 +2,13 @@ package com.kako351.kotlinratingstar.kotlinratingstar
 
 import android.content.Context
 import android.graphics.Color
+import android.media.Image
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.children
 
 class KotlinRatingStar @JvmOverloads constructor(
     context: Context,
@@ -34,20 +36,33 @@ class KotlinRatingStar @JvmOverloads constructor(
     private fun init() {
         for (i in this.minStar..this.maxStar) {
             layout.addView(createStar(
+                i,
                 i <= rating
             ))
         }
     }
 
-    private fun createStar(isRate: Boolean) = ImageView(context).apply {
+    private fun createStar(position: Int, isRate: Boolean) = ImageView(context).apply {
         setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_star_24dp, null))
         val l = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT)
         l.weight = 1f
         layoutParams = l
-        val colorFilter = when(isRate) {
+
+        updateColorFilter(this, isRate)
+        setOnClickListener { updateRating(position) }
+    }
+
+    private fun updateRating(rating: Int) {
+        layout.children.forEachIndexed { index, view ->
+            if( view is ImageView) { updateColorFilter(view, index < rating) }
+        }
+    }
+
+    private fun updateColorFilter(imageView: ImageView, isRating: Boolean) {
+        val colorFilter = when(isRating) {
             true -> ratingColor
             false -> offColor
         }
-        setColorFilter(colorFilter)
+        imageView.setColorFilter(colorFilter)
     }
 }
