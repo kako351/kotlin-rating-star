@@ -2,8 +2,9 @@ package com.kako351.kotlinratingstar.kotlinratingstar
 
 import android.content.Context
 import android.graphics.Color
-import android.media.Image
 import android.util.AttributeSet
+import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -20,6 +21,8 @@ class KotlinRatingStar @JvmOverloads constructor(
     private var rating: Int
     private var ratingColor: Int
     private val offColor = Color.LTGRAY
+
+    private var changeLister: ((Int) -> Unit)? = null
 
     private var layout = this
 
@@ -56,6 +59,8 @@ class KotlinRatingStar @JvmOverloads constructor(
         layout.children.forEachIndexed { index, view ->
             if( view is ImageView) { updateColorFilter(view, index < rating) }
         }
+        this.rating = rating
+        changeLister?.invoke(rating)
     }
 
     private fun updateColorFilter(imageView: ImageView, isRating: Boolean) {
@@ -64,5 +69,9 @@ class KotlinRatingStar @JvmOverloads constructor(
             false -> offColor
         }
         imageView.setColorFilter(colorFilter)
+    }
+
+    fun setRatingChangeListener(listener: (rating: Int) -> Unit) {
+        changeLister = listener
     }
 }
