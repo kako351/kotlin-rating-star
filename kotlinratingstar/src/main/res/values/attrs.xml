@@ -3,5 +3,7 @@
     <declare-styleable name="KotlinRatingStar">
         <attr name="maxStar" format="integer" />
         <attr name="minStar" format="integer" />
+        <attr name="rating" format="integer" />
+        <attr name="ratingColor" format="color" />
     </declare-styleable>
 </resources>

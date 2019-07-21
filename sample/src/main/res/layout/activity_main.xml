@@ -12,6 +12,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:minStar="1"
-            app:maxStar="5"/>
+            app:maxStar="5"
+            app:rating="4"
+            app:ratingColor="@color/colorPrimary"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.kako351.kotlinratingstar.kotlinratingstar
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -14,6 +15,9 @@ class KotlinRatingStar @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
     private var maxStar: Int
     private var minStar: Int
+    private var rating: Int
+    private var ratingColor: Int
+    private val offColor = Color.LTGRAY
 
     private var layout = this
 
@@ -21,20 +25,29 @@ class KotlinRatingStar @JvmOverloads constructor(
         val a = context.theme.obtainStyledAttributes(attrs, R.styleable.KotlinRatingStar, 0, 0)
         maxStar = a.getInt(R.styleable.KotlinRatingStar_maxStar, 2)
         minStar = a.getInt(R.styleable.KotlinRatingStar_minStar, 1)
+        rating = a.getInt(R.styleable.KotlinRatingStar_rating, 2)
+        ratingColor = a.getColor(R.styleable.KotlinRatingStar_ratingColor, Color.DKGRAY)
         init()
         a.recycle()
     }
 
     private fun init() {
         for (i in this.minStar..this.maxStar) {
-            layout.addView(createStar())
+            layout.addView(createStar(
+                i <= rating
+            ))
         }
     }
 
-    private fun createStar() = ImageView(context).apply {
+    private fun createStar(isRate: Boolean) = ImageView(context).apply {
         setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_star_24dp, null))
         val l = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT)
         l.weight = 1f
         layoutParams = l
+        val colorFilter = when(isRate) {
+            true -> ratingColor
+            false -> offColor
+        }
+        setColorFilter(colorFilter)
     }
 }
