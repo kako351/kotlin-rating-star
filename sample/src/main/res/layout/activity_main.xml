@@ -10,6 +10,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:minStar="1"
+            app:maxStar="5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

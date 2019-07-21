@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KotlinRatingStar">
+        <attr name="maxStar" format="integer" />
+        <attr name="minStar" format="integer" />
+    </declare-styleable>
+</resources>
