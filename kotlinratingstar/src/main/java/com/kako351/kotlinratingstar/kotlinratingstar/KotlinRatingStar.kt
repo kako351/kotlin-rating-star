@@ -20,6 +20,8 @@ class KotlinRatingStar @JvmOverloads constructor(
     private var minStar: Int
     private var rating: Int
     private var ratingColor: Int
+    private var readOnly: Boolean
+
     private val offColor = Color.LTGRAY
 
     private var changeLister: ((Int) -> Unit)? = null
@@ -31,6 +33,7 @@ class KotlinRatingStar @JvmOverloads constructor(
         maxStar = a.getInt(R.styleable.KotlinRatingStar_maxStar, 2)
         minStar = a.getInt(R.styleable.KotlinRatingStar_minStar, 1)
         rating = a.getInt(R.styleable.KotlinRatingStar_rating, 2)
+        readOnly = a.getBoolean(R.styleable.KotlinRatingStar_readOnly, true)
         ratingColor = a.getColor(R.styleable.KotlinRatingStar_ratingColor, Color.DKGRAY)
         init()
         a.recycle()
@@ -52,7 +55,7 @@ class KotlinRatingStar @JvmOverloads constructor(
         layoutParams = l
 
         updateColorFilter(this, isRate)
-        setOnClickListener { updateRating(position) }
+        if(readOnly) setOnClickListener { updateRating(position) }
     }
 
     private fun updateRating(rating: Int) {

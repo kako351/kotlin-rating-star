@@ -15,6 +15,7 @@
             app:minStar="1"
             app:maxStar="5"
             app:rating="4"
-            app:ratingColor="@color/colorPrimary"/>
+            app:ratingColor="@color/colorPrimary"
+            app:readOnly="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
